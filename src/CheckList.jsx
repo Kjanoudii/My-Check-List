@@ -55,7 +55,7 @@ const Checklist = (prop) => {
 
             <button onClick={addNewTask}
                 className="block mt-4 mx-auto px-4 py-2 bg-blue-500 text-white rounded" >
-                Add New Task LOL
+                Add New Task
             </button>
         </div>
     );
