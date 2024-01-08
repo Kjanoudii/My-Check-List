@@ -1,17 +1,17 @@
 
-import {  } from 'react';
+import { } from 'react';
 
 const Checklist = (prop) => {
-    const { listName , items, setItems } = prop
+    const { listName, items, setItems } = prop
 
     //   const myItems = data.forEach(element => {
 
     //       element.items;
 
     //     });
-    
-    
-   
+
+
+
     const handleCheckboxChange = (id) => {
         setItems((prevItems) =>
             prevItems.map((item) =>
@@ -19,14 +19,14 @@ const Checklist = (prop) => {
             )
         );
 
-        
+
     };
 
     const addNewTask = () => {
         const newTaskName = prompt('Enter the name for the new task:');
         if (newTaskName) {
             const newItem = {
-                id: items.length + 1, 
+                id: items.length + 1,
                 text: newTaskName,
                 checked: false,
             };
@@ -55,7 +55,7 @@ const Checklist = (prop) => {
 
             <button onClick={addNewTask}
                 className="block mt-4 mx-auto px-4 py-2 bg-blue-500 text-white rounded" >
-                Add New Task
+                Add New Task LOL
             </button>
         </div>
     );
