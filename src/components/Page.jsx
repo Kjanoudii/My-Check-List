@@ -37,7 +37,7 @@ export default function Page() {
 
     return (
         <div className="flex justify-center items-center h-full">
-            <div id="test" className="flex w-1/2 my-20 h-96">
+            <div className="flex w-1/2 my-20 h-96 shadow-lg">
 
                 {/* left */}
                 <Lists setListName={setListName} 
