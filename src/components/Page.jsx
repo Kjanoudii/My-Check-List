@@ -1,9 +1,40 @@
 // Page.js
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Checklist from './CheckList';
 import Lists from './Lists';
+import {db} from "../firebase-config.js";
+import {
+  
+  collection,
+ getDocs
+} from "firebase/firestore";
 
 export default function Page() {
+    // console.log(db)
+
+      const checklistsRef = collection(db, "Checklists");
+
+const[checklistsData, setChecklistsData] = useState('')
+
+      const getChecklists = async () => {
+        try {
+          const data = await getDocs(checklistsRef);
+          const filteredData = data.docs.map((doc) => ({
+            ...doc.data(),
+          }));
+          setChecklistsData(filteredData);
+          console.log(checklistsData)
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+
+useEffect(()=>{
+
+    getChecklists()
+},[0])
+
     const [listName, setListName] = useState('');
     const[index, setIndex] = useState(0)
     const [data, setData] = useState([
