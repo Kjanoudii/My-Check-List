@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 export default function List(prop) {
-  const { setListName, name, index, setIndex, changeItems } = prop;
+  const { setListName, name, index, setIndex, changeItems,  checklistsData,
+          setChecklistsData} = prop;
   const getListName = () => {
     setListName(name);
     console.log(name);

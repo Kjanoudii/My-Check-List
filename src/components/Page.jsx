@@ -10,9 +10,9 @@ export default function Page() {
   // console.log(db)
 
   const checklistsRef = collection(db, "Checklists");
-// eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars
 
-  const [checklistsData, setChecklistsData] = useState("");
+  const [checklistsData, setChecklistsData] = useState([]);
 
   const getChecklists = async () => {
     try {
@@ -21,7 +21,6 @@ export default function Page() {
         ...doc.data(),
       }));
       setChecklistsData(filteredData);
-      console.log(checklistsData);
     } catch (err) {
       console.log(err);
     }
@@ -29,6 +28,9 @@ export default function Page() {
 
   useEffect(() => {
     getChecklists();
+    console.log(checklistsData);
+    const newData = checklistsData;
+    console.log(newData);
   }, []);
 
   const [listName, setListName] = useState("");
@@ -70,18 +72,22 @@ export default function Page() {
           data={data}
           setData={setData}
           setIndex={setIndex}
+          checklistsData={checklistsData}
+          setChecklistsData={setChecklistsData}
           index={index}
           changeItems={changeItems}
         />
         {/* right */}
         <Checklist
           listName={listName}
-          data={data}
+          data={checklistsData}
           setData={setData}
           setIndex={setIndex}
           index={index}
           items={items}
           setItems={setItems}
+          checklistsData={checklistsData}
+          setChecklistsData={setChecklistsData}
         />
       </div>
     </div>
