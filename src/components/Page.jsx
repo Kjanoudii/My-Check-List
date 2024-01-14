@@ -9,6 +9,8 @@ import {
   getDocs,
   getDoc,
   doc,
+  addDoc,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 
@@ -16,13 +18,12 @@ export default function Page() {
   // console.log(db)
 
   const [index, setIndex] = useState(0);
-  const[id, setId]=useState(index+1)
+  const [id, setId] = useState("");
   const checklistsRef = collection(db, "Checklists");
-  // eslint-disable-next-line no-unused-vars
 
   const [checkListsData, setCheckListsData] = useState([]);
   const [checkListItems, setCheckListItems] = useState([]);
-
+  const [listName, setListName] = useState("");
   const getChecklists = async () => {
     try {
       const data = await getDocs(checklistsRef);
@@ -53,34 +54,53 @@ export default function Page() {
     fetchData();
   }, []);
 
-  console.log(checkListsData);
+  // const [listName, setListName] = useState("");
 
-  const [listName, setListName] = useState("");
-  
   console.log(checkListsData[index]);
-  // const [items, setItems] = useState([data[index].items]);
 
-  const changeItems = (index) => setCheckListItems(checkListsData[index].items);
+  const changeItems = (index) => {
+    setCheckListItems(checkListsData[index].items);
+    setId(index + 1);
+  };
 
   let updatedCheckListItems;
 
   const addNewTask = async (id, newItem) => {
     console.log(id);
     const checklistRef = doc(db, "Checklists", id);
-     console.log(id);
+    console.log(id);
     try {
       const contactSnapshot = await getDoc(checklistRef);
       if (contactSnapshot.exists()) {
         const checklistData = contactSnapshot.data();
         updatedCheckListItems = [...checklistData.items, newItem];
 
-        await updateDoc(checklistRef, {items: updatedCheckListItems });
+        await updateDoc(checklistRef, { items: updatedCheckListItems });
         setCheckListItems(updatedCheckListItems);
-
-       
+        fetchData();
       } else {
         console.log("Contact document does not exist");
       }
+    } catch (error) {
+      console.error("Error adding message:", error);
+    }
+  };
+
+  const addList = async (listName) => {
+    try {
+      const newId = checkListsData.length + 1; // Calculate the new ID
+      const checklistRef = doc(db, "Checklists", newId.toString());
+
+      await setDoc(checklistRef, {
+        name: listName,
+        items: [], // You can initialize items here if needed
+      });
+
+      setCheckListsData((prevData) => [
+        ...prevData,
+        { name: listName, items: [] },
+      ]);
+      fetchData();
     } catch (error) {
       console.error("Error adding message:", error);
     }
@@ -91,28 +111,29 @@ export default function Page() {
       <div className="flex w-1/2 my-20 h-96 shadow-lg">
         {/* left */}
         <Lists
+          listName={listName}
           setListName={setListName}
-          
           setIndex={setIndex}
           checkListsData={checkListsData}
           setCheckListsData={setCheckListsData}
           index={index}
           changeItems={changeItems}
+          addList={addList}
         />
         {/* right */}
         <Checklist
-          listName={listName}
           data={checkListsData}
-  
           setIndex={setIndex}
           index={index}
-          
           checkListItems={checkListItems}
           setCheckListItem={setCheckListItems}
           checklistsData={checkListsData}
           setCheckListsData={setCheckListsData}
           addNewTask={addNewTask}
           id={id}
+          listName={listName}
+          setListName={setListName}
+          setId={setId}
         />
       </div>
     </div>

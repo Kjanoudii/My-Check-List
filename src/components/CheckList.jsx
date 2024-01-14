@@ -1,7 +1,8 @@
 import {} from "react";
 import {} from "firebase/firestore";
 const Checklist = (prop) => {
-  const { listName, setCheckListItems, checkListItems, addNewTask, id } = prop;
+  const { listName, setCheckListItems, checkListItems, addNewTask, id,  } =
+    prop;
 
   console.log(checkListItems);
 
@@ -24,13 +25,14 @@ const Checklist = (prop) => {
 
     addNewTask(id.toString(), newItem);
   };
-
+  console.log(id)  ////id is not changing here
+console.log(checkListItems)
   return (
     <div className="bg-blue-300 w-1/2 p-4">
       <h1 className="text-white">{listName}</h1>
       <ul>
         {checkListItems.map((item) => (
-          <li key={item.id} className="mt-2">
+          <li  key={item.id} className="mt-2">
             <label className="flex items-center">
               <input
                 type="checkbox"
@@ -41,7 +43,7 @@ const Checklist = (prop) => {
               <span>{item.text}</span>
             </label>
           </li>
-        ))}
+        )) }
       </ul>
 
       <button

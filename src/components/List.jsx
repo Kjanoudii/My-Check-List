@@ -2,6 +2,7 @@
 export default function List(prop) {
   const { setListName, name, index, setIndex, changeItems,  checkListsData,
           setCheckListsData} = prop;
+
   const getListName = () => {
     setListName(name);
     console.log(name);
@@ -11,7 +12,7 @@ export default function List(prop) {
     setIndex(index);
     changeItems(index);
 
-    console.log(index);
+  
   };
 
   return (
