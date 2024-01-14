@@ -56,30 +56,7 @@ export default function Page() {
   console.log(checkListsData);
 
   const [listName, setListName] = useState("");
-  const [data, setData] = useState([
-    {
-      name: "Workout Log",
-      items: [
-        { id: 1, text: "Exercise 1", checked: false },
-        { id: 2, text: "Exercise 2", checked: false },
-      ],
-    },
-    {
-      name: "Groceries",
-      items: [
-        { id: 1, text: "Milk", checked: false },
-        { id: 2, text: "Bread", checked: false },
-      ],
-    },
-    {
-      name: "To-Do List",
-      items: [
-        { id: 1, text: "Task 1", checked: false },
-        { id: 2, text: "Task 2", checked: false },
-      ],
-    },
-  ]);
-
+  
   console.log(checkListsData[index]);
   // const [items, setItems] = useState([data[index].items]);
 
@@ -88,8 +65,9 @@ export default function Page() {
   let updatedCheckListItems;
 
   const addNewTask = async (id, newItem) => {
+    console.log(id);
     const checklistRef = doc(db, "Checklists", id);
-
+     console.log(id);
     try {
       const contactSnapshot = await getDoc(checklistRef);
       if (contactSnapshot.exists()) {
@@ -99,7 +77,7 @@ export default function Page() {
         await updateDoc(checklistRef, {items: updatedCheckListItems });
         setCheckListItems(updatedCheckListItems);
 
-        getChecklists();
+       
       } else {
         console.log("Contact document does not exist");
       }
@@ -114,8 +92,7 @@ export default function Page() {
         {/* left */}
         <Lists
           setListName={setListName}
-          data={data}
-          setData={setData}
+          
           setIndex={setIndex}
           checkListsData={checkListsData}
           setCheckListsData={setCheckListsData}
@@ -126,11 +103,10 @@ export default function Page() {
         <Checklist
           listName={listName}
           data={checkListsData}
-          setData={setData}
+  
           setIndex={setIndex}
           index={index}
-          // items={items}
-          // setItems={setItems}
+          
           checkListItems={checkListItems}
           setCheckListItem={setCheckListItems}
           checklistsData={checkListsData}
