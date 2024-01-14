@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import List from "./List";
 
+
 const Lists = (prop) => {
   const {
     setListName,
@@ -8,13 +9,13 @@ const Lists = (prop) => {
     setData,
     setIndex,
     changeItems,
-    checklistsData,
-    setChecklistsData,
+    checkListsData,
+    setCheckListsData,
   } = prop;
 
   // let id = 1;
 
-  console.log(checklistsData);
+  console.log(checkListsData);
   // const addNewList = () => {
   //   const newListName = prompt("Enter the name for the new list:");
   //   if (newListName) {
@@ -32,14 +33,14 @@ const Lists = (prop) => {
   return (
     <div className="w-1/3 bg-gray-200 p-4">
       {/* <h2 className="text-center">Add List</h2> */}
-      {checklistsData.map((list, index) => (
+      {checkListsData.map((list, index) => (
         <List
           key={index}
           index={index}
           setListName={setListName}
           name={list.name}
           items={list.items}
-          // addNewList={addNewList}
+        
          
           setIndex={setIndex}
           changeItems={changeItems}
