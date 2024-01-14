@@ -21,7 +21,8 @@ export default function List(prop) {
           handleClick();
         }}
       >
-        {name}
+        {}
+        {name + "HI"} 
       </h3>
     </div>
   );
