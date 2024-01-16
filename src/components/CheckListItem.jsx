@@ -19,7 +19,6 @@ export default function CheckListItem(prop) {
     </li>
   );
 }
-
 // <li
 //   id={`item-${id}`}
 //   className={`mt-2 ${checked ? "line-through" : ""}`}

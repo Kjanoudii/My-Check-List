@@ -122,6 +122,7 @@ export default function Page() {
           listName={listName}
           fetchData={fetchData}
           changeItems={changeItems}
+          index={index}
         />
       </div>
     </div>

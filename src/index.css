@@ -22,14 +22,14 @@ height: 420px;
   left: 0;
   top: 50%;
   width: 100%;
-  height: 2px; /* Adjust the line thickness as needed */
-  background-color: black; /* Adjust the line color as needed */
+  height: 2px; 
+  background-color: black; 
   transform: translateY(-50%);
-  display: none; /* Initially hide the line */
+  display: none; 
 }
 
 .checkbox-label.line-through::before {
-  display: block; /* Display the line only for checked items */
+  display: block; 
 }
 
 .checkbox-label.line-through {
