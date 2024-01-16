@@ -4,33 +4,15 @@ import List from "./List";
 const Lists = (prop) => {
   const {
     setListName,
-    data,
-    setData,
     listName,
     setIndex,
     changeItems,
     checkListsData,
-    setCheckListsData,
     setId,
     addList,
   } = prop;
 
-  // let id = 1;
-
   console.log(checkListsData);
-  // const addNewList = () => {
-  //   const newListName = prompt("Enter the name for the new list:");
-  //   if (newListName) {
-  //     setData((prevData) => [
-  //       ...prevData,
-  //       {
-  //         name: newListName,
-  //         items: [], // You can initialize items here if needed
-  //       },
-  //     ]);
-  //   }
-  //   console.log(data);
-  // };
 
   return (
     <div className="w-1/3 bg-gray-200 p-4">
@@ -45,7 +27,7 @@ const Lists = (prop) => {
           changeItems={changeItems}
           listName={listName}
           setListName={setListName}
-          setId={setId}
+         
         />
       ))}
       <button

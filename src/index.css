@@ -5,3 +5,9 @@
 /* #test{
 height: 420px;
 } */
+
+
+
+.selected{
+    text-decoration: line-through;
+}

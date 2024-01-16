@@ -9,14 +9,11 @@ import {
   getDocs,
   getDoc,
   doc,
-  addDoc,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
 
 export default function Page() {
-  // console.log(db)
-
   const [index, setIndex] = useState(0);
   const [id, setId] = useState("");
   const checklistsRef = collection(db, "Checklists");
@@ -54,10 +51,6 @@ export default function Page() {
     fetchData();
   }, []);
 
-  // const [listName, setListName] = useState("");
-
-  console.log(checkListsData[index]);
-
   const changeItems = (index) => {
     setCheckListItems(checkListsData[index].items);
     setId(index + 1);
@@ -66,9 +59,9 @@ export default function Page() {
   let updatedCheckListItems;
 
   const addNewTask = async (id, newItem) => {
-    console.log(id);
+
     const checklistRef = doc(db, "Checklists", id);
-    console.log(id);
+   
     try {
       const contactSnapshot = await getDoc(checklistRef);
       if (contactSnapshot.exists()) {
@@ -86,6 +79,8 @@ export default function Page() {
     }
   };
 
+  
+
   const addList = async (listName) => {
     try {
       const newId = checkListsData.length + 1; // Calculate the new ID
@@ -93,7 +88,7 @@ export default function Page() {
 
       await setDoc(checklistRef, {
         name: listName,
-        items: [], // You can initialize items here if needed
+        items: [],
       });
 
       setCheckListsData((prevData) => [
@@ -115,25 +110,20 @@ export default function Page() {
           setListName={setListName}
           setIndex={setIndex}
           checkListsData={checkListsData}
-          setCheckListsData={setCheckListsData}
           index={index}
           changeItems={changeItems}
           addList={addList}
+          fetchData={fetchData}
         />
         {/* right */}
         <Checklist
-          data={checkListsData}
-          setIndex={setIndex}
-          index={index}
           checkListItems={checkListItems}
-          setCheckListItem={setCheckListItems}
-          checklistsData={checkListsData}
-          setCheckListsData={setCheckListsData}
+          setCheckListItems={setCheckListItems}
           addNewTask={addNewTask}
           id={id}
           listName={listName}
-          setListName={setListName}
-          setId={setId}
+          fetchData={fetchData}
+         
         />
       </div>
     </div>
