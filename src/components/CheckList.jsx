@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import {useEffect} from "react";
-import { updateDoc, doc } from "firebase/firestore";
+import { useEffect } from "react";
+import { updateDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase-config.js";
-import CheckListItem from "./CheckListItem"
+import CheckListItem from "./CheckListItem";
 const Checklist = (prop) => {
   const {
     listName,
@@ -11,21 +11,44 @@ const Checklist = (prop) => {
     addNewTask,
     id,
     fetchData,
+    changeItems,
   } = prop;
+  // const myId=id;
 
+  // const handleCheckboxChange = async (id) => {
 
+  //   const checklistRef =   doc(db, "Checklists", id.toString());
 
-  const handleCheckboxChange = (id) => {
-    setCheckListItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id? { ...item, checked: !item.checked } : item
-      )
+  //    const updatedItems = checkListItems.map((item) =>
+  //      item.id === id ? { ...item, checked: !item.checked } : item
+  //    );
+
+  //    // Update the state
+  //    setCheckListItems(updatedItems);
+
+  //    // Update the document in the database
+  //    await updateDoc(checklistRef, { items: updatedItems });
+
+  //  };
+
+  const myId = id;
+  let items = [];
+  const handleCheckboxChange = async (id) => {
+    const checklistRef = doc(db, "Checklists", myId.toString());
+
+    const updatedItems = checkListItems.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
     );
-
-    //      const clickedElement = document.getElementById(`item-${index}`);
-
-    // clickedElement.classList.toggle("selected");
+    items = updatedItems;
+    setCheckListItems(items);
+    changeItems();
+    // Update the document in the database
+    await updateDoc(checklistRef, { items: updatedItems });
+    setCheckListItems(updatedItems);
   };
+  //  useEffect(() => {
+
+  //  }, [checkListItems]);
 
   const handleCLick = () => {
     const newTaskName = prompt("Enter the name for the new task");
@@ -53,17 +76,9 @@ const Checklist = (prop) => {
             name={item.text}
             id={item.id}
             handleCheckboxChange={handleCheckboxChange}
-            checked={item.checked}/>
-          // <li
-          //   id={`item-${index}`}
-          //   key={item.id}
-          //   className={`mt-2 ${item.checked ? "line-through" : ""}`}
-          //   onClick={() => handleCheckboxChange(id)}
-          //   style={{ cursor: "pointer" }}
-          // >
-          //   {item.text}
-          // </li>
-          // />
+            checked={item.checked}
+            fetchData={fetchData}
+          />
         ))}
       </ul>
 
@@ -79,26 +94,16 @@ const Checklist = (prop) => {
 
 export default Checklist;
 
-
-
-
-
-
-
-
-
-
-
-
-
-            // <li key={item.id}className={`mt-2 ${item.checked ? 'line-through' : ''}`}>
-            //   <label className="flex items-center">
-            //     <input
-            //       type="checkbox"
-            //       checked={item.checked}
-            //       onChange={() => handleCheckboxChange(item.id)}
-            //       className="mr-2"
-            //     />
-            //     <span>{item.text}</span>
-            //   </label>
-            // </li>
+{
+  /* <li key={item.id}className={`mt-2 ${item.checked ? 'line-through' : ''}`}>
+  <label className="flex items-center">
+    <input
+      type="checkbox"
+      checked={item.checked}
+      onChange={() => handleCheckboxChange(item.id)}
+      className="mr-2"
+    />
+    <span>{item.text}</span>
+  </label>
+</li> */
+}
