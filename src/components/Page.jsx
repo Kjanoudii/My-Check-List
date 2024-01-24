@@ -51,17 +51,17 @@ export default function Page() {
     fetchData();
   }, []);
 
-  const changeItems = (index) => {
-    setCheckListItems(checkListsData[index].items);
+  const changeItems = async (index) => {
+    await fetchData();
     setId(index + 1);
+    setCheckListItems(checkListsData[index].items);
   };
 
   let updatedCheckListItems;
 
   const addNewTask = async (id, newItem) => {
-
     const checklistRef = doc(db, "Checklists", id);
-   
+
     try {
       const contactSnapshot = await getDoc(checklistRef);
       if (contactSnapshot.exists()) {
@@ -78,8 +78,6 @@ export default function Page() {
       console.error("Error adding message:", error);
     }
   };
-
-  
 
   const addList = async (listName) => {
     try {
@@ -123,7 +121,8 @@ export default function Page() {
           id={id}
           listName={listName}
           fetchData={fetchData}
-         
+          changeItems={changeItems}
+          index={index}
         />
       </div>
     </div>

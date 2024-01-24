@@ -1,13 +1,12 @@
-import './index.css'
+import "./index.css";
 
-import Page from './components/Page'
+import Page from "./components/Page";
 function App() {
-
   return (
-    <div >
-      <Page/>
-    </div> 
-  )
+    <div>
+      <Page />
+    </div>
+  );
 }
 
-export default App
+export default App;

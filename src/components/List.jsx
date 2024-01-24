@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 export default function List(prop) {
-  const { setListName, name, index, setIndex, changeItems, fetchData} = prop;
+  const { setListName, name, index, setIndex, changeItems, fetchData } = prop;
 
   const getListName = () => {
     setListName(name);
@@ -10,9 +10,6 @@ export default function List(prop) {
   const handleClick = () => {
     setIndex(index);
     changeItems(index);
-  
-   
-  
   };
 
   return (

@@ -6,8 +6,32 @@
 height: 420px;
 } */
 
-
-
-.selected{
+/* .selected{
     text-decoration: line-through;
+} */
+
+.checkbox-label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.checkbox-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.checkbox-label.line-through::before {
+  display: block;
+}
+
+.checkbox-label.line-through {
+  text-decoration: line-through;
 }
