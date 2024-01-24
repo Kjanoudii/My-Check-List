@@ -49,8 +49,9 @@ const Checklist = (prop) => {
 
   console.log(checkListItems);
 return (
-  <div className="bg-blue-300 w-1/2 p-4 flex flex-col items-center">
-    <h1 className="text-white">{listName}</h1>
+  <div className="bg-blue-200 w-1/2 p-4 flex flex-col items-center">
+    <h1 className="text-white text-3xl font-bold tracking-wide text-shadow-lg">
+      {listName}</h1>
     <ul>
       {checkListItems.map((item, index) => (
         <CheckListItem
