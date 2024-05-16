@@ -100,8 +100,8 @@ export default function Page() {
   };
 
   return (
-    <div className="flex justify-center items-center h-full">
-      <div className="flex w-1/2 my-20 h-96 shadow-lg">
+    <div className="h-full container mx-auto">
+      <div className="flex lg:w-autp w-full my-20 lg:h-[400px] h-full justify-center">
         {/* left */}
         <Lists
           listName={listName}

@@ -48,34 +48,34 @@ const Checklist = (prop) => {
   };
 
   console.log(checkListItems);
-return (
-  <div className="bg-blue-200 w-1/2 p-4 flex flex-col items-center">
-    <h1 className="text-white text-3xl font-bold tracking-wide text-shadow-lg">
-      {listName}</h1>
-    <ul>
-      {checkListItems.map((item, index) => (
-        <CheckListItem
-          key={index}
-          index={index}
-          name={item.text}
-          id={item.id}
-          handleCheckboxChange={handleCheckboxChange}
-          checked={item.checked}
-          fetchData={fetchData}
-        />
-      ))}
-    </ul>
+  return (
+    <div className="bg-blue-200 w-full lg:w-1/2 p-4 flex flex-col items-center">
+      <h1 className="text-white lg:text-3xl text-lg font-bold tracking-wide text-shadow-lg">
+        {listName}
+      </h1>
+      <ul>
+        {checkListItems.map((item, index) => (
+          <CheckListItem
+            key={index}
+            index={index}
+            name={item.text}
+            id={item.id}
+            handleCheckboxChange={handleCheckboxChange}
+            checked={item.checked}
+            fetchData={fetchData}
+          />
+        ))}
+      </ul>
 
-    <button
-      onClick={handleCLick}
-      className="block mt-4 px-4 py-2 bg-blue-500 text-white rounded transform transition-transform hover:scale-105"
-    >
-      Add New Task
-    </button>
-  </div>
-);
-
-      }
+      <button
+        onClick={handleCLick}
+        className="block mt-4 px-4 py-2 bg-blue-500 text-white rounded transform transition-transform hover:scale-105"
+      >
+        Add New Task
+      </button>
+    </div>
+  );
+};
 export default Checklist;
 
 /* <li key={item.id}className={`mt-2 ${item.checked ? 'line-through' : ''}`}>

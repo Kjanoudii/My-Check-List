@@ -15,7 +15,7 @@ const Lists = (prop) => {
   console.log(checkListsData);
 
   return (
-    <div className="w-1/3 bg-gray-200 p-4">
+    <div className="lg:w-1/3 w-full bg-gray-200 p-4">
       {checkListsData.map((list, index) => (
         <List
           key={index}
